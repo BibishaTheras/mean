@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+</head>
+<body>
+    <h1>open weather API</h1>
+    <label>location</label>
+    <input type="text" id="location" name="loc">
+    <button onclick="getrecords()">submit</button> 
+    <ul id="result"></ul>
+    <script>
+          function getrecords(){
+                
+                var location=document.getElementById("location").value;
+                let url=`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e81ec3bf165336c430b79a2b8dd06027&units=metric`;
+                 console.log('url',url);
+                fetch(url)
+                    .then(response=>response.json())
+                    /**.then(json=>console.log(json))**/
+                    .then(json=>display(json))
+          }
+          function display(rec){
+              name=rec.name;
+              lon=rec.coord.lon;
+              lat=rec.coord.lat;
+              temp=rec.main.temp;
+              pressure=rec.main.pressure;
+              humidity=rec.main.humidity;
+              wind=rec.wind.speed;
+
+              var data="<ul>";
+              data=data+"<li>name:"+ name +"</li>"+"<li>lon:"+ lon +"</li>"+"<li>lat:"+lat+"</li>"+"<li>temperature:"+temp+"</li>"+"<li>pressure:"+pressure+"</li>"+"<li>humidity:"+humidity+"</li>"+"<li>wind:"+wind+"</li>";
+             data=data+"</ul>";
+             document.getElementById("result").innerHTML=data;
+   }
+    </script>       
+        
+    
+
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo's</title>
+    <style>
+
+       
+        
+        
+    </style>
+</head>
+<body onload="getuser()">
+    <h3>END TO END CRUD</h3>
+    <input type="text" id="id" name="id" placeholder="id" disabled><br>
+    <input type="text" id="name" name="name" placeholder="enter name"><br>
+    <input type="email" id="email" name="email" placeholder="enter mail"><br>
+    <input type="text" id="city" name="city" placeholder="enter city"><br>
+    <input type="number" id="phone" name="ph" placeholder="enter ph number"><br>    
+    <input type="text" id="company" name="com" placeholder="enter company"><br>
+    <button id="add" onclick="adduser()">Add user</button><br><br><br>
+            <button id="update" onclick="updateuser()" disabled>Update user</button><br><br>
+<table id="result"></table>
+<script>
+    var user=[];
+    function getuser(){
+        document.getElementById('add').disabled=false;
+            document.getElementById('update').disabled=true;
+            fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response=>response.json())
+            //.then(json=>console.log(json))
+            .then(json=>showuser(json))   
+    }
+    function showuser(record){
+        user=record;
+        var dispdata=`<tr><th>Id</th><th>Name</th><th>Email</th><th>City</th><th>phone</th><th>company</th><th>Delete</th></tr>`;
+            for (let i=0;i<user.length;i++){
+                dispdata= dispdata +`<tr><td>${user[i].id}</td><td>${user[i].name}</td><td>${user[i].email}</td><td>${user[i].address.city}</td><td>${user[i].phone}</td><td>${user[i].company.name}</td><td><button id=${user[i].id} onclick="updateuser(${user[i].id})">Update</button></td><td><button id=${user[i].id} onclick="deleteuser(${user[i].id})">delete</button></td></tr>`;
+//console.log('display',dispdata);
+    }
+    document.getElementById('result').innerHTML=dispdata;
+    }
+    function updateuser(id)
+        {
+            datatupdate='';
+            for (i=0;i<user.length;i++)
+            {
+               if (user[i].id==id)
+               datatupdate = user[i];
+            }            
+            document.getElementById('id').value=datatupdate.id;
+            document.getElementById('name').value=datatupdate.name;
+            document.getElementById('email').value=datatupdate.email;
+            document.getElementById('city').value=datatupdate.adress.city;
+            document.getElementById('phone').value=datatupdate.phone;
+            document.getElementById('company').value=datatupdate.company;
+            document.getElementById('add').disabled=true;
+            document.getElementById('update').disabled=false;            
+        }
+        function deleteuser(id)
+        {            
+            console.log("delete user id ",id);
+            deleteindex=-1;
+            for (i=0;i<user.length;i++)
+            {
+               if (user[i].id==id)
+                deleteindex = i;
+            }
+            if (deleteindex>=0)
+            {
+                console.log('delete index::',deleteindex);
+                user.splice(deleteindex,1);
+            }
+            showuser(user);
+           }
+
+           function adduser(){
+            id=user.length+1;
+            id=document.getElementById('id').value;
+           // console.log('id',id);           
+            name=document.getElementById('name').value;
+            email=document.getElementById('email').value;
+            city=document.getElementById('city').value;
+            phone=document.getElementById('phone').value;
+            company=document.getElementById('company').value;
+            //newtodo = {'id':id,'title':title,'userId':userId,'status':status};
+            fetch('https://jsonplaceholder.typicode.com/users',            
+            {
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                method: 'POST',
+                body: JSON.stringify({
+                    id: id,
+                   name:name,
+                   email:email,
+                   city:city,
+                   phone:phone,
+                   company:company
+
+                })
+            }            
+            )
+            .then(response=>response.json())
+            //.then(json=>console.log('add ',json))
+            .then(json=>adduser(json))
+        
+        }
+
+        function adduser(usr){
+            user.unshift(usr);
+            showuser(user);        
+        }
+
+        function updateuser(){            
+            id=document.getElementById('id').value;
+            name=document.getElementById('name').value;
+            email=document.getElementById('email').value;
+            city=document.getElementById('city').value;
+            phone=document.getElementById('phone').value;
+            company=document.getElementById('company').value;
+            url=`https://jsonplaceholder.typicode.com/users${id}`
+
+            fetch(url,            
+            {
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                method: 'PUT',
+                body: JSON.stringify({
+                id: id,
+                name:name,
+                   email:email,
+                   city:city,
+                   phone:phone,
+                   company:company
+                })
+            }            
+            )
+            .then(response=>response.json())
+            .then(json=>
+            {
+                console.log('updated',json);
+                for (i=0;i<user.length;i++)
+                {
+                    if (user[i].id==id)
+                    {
+                        updateduser={
+                            id: id,
+                            name:name,
+                   email:email,
+                   city:city,
+                   phone:phone,
+                   company:company
+                            
+                        };
+                        console.log('updated user :: ',updateduser);
+                        user[i]=updateduser;
+                        showuser(user);
+                    }            
+                }
+            }          
+            
+            )
+        }
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
