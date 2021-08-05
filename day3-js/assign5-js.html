@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #re,td,th{
+        border: black;border-collapse: collapse;border-style: solid;
+    }
+    #result,td{
+        border: black;border-collapse: collapse;border-style: solid;
+    }
+</style>
+<body>
+    <h1>IPL</h1>
+ 
+    <input type="text" name="name" id="name" placeholder="Enter player name"><br>
+    <input type="text" name="team" id="team" placeholder="Enter team"><br>
+    <input type="text" name="season" id="season" placeholder="Enter season"><br>
+    <input type="text" name="runs" id="runs" placeholder="Enter the runs"><br>
+    <input type="text" name="wickets" id="wickets" placeholder="Enter wickets"><br><br>
+    <button onclick="saveplayer()">Save</button>
+    <button onclick="dashboard()">leader</button><br><br>
+    
+    <table id="result">
+    </table>
+    <table id="re"></table>
+    
+    <script>
+        playerlist=[];
+        function player(name,team,season,runs,wickets){
+            this.name=name;
+            this.team=team;
+            this.season=season;
+            this.runs=runs;
+            this.wickets=wickets;
+        }
+        function saveplayer()
+        {
+            name=document.getElementById("name").value;
+            team=document.getElementById('team').value;
+            season=document.getElementById("season").value;
+            runs=document.getElementById("runs").value;
+            wickets=document.getElementById("wickets").value;
+            pl = new player(name,team,season,runs,wickets);
+            playerlist.push(pl);
+            console.log('playerlist ',playerlist);
+            displayplayer();
+
+        }
+        function displayplayer()
+        {
+            var data = '';    
+        for (var i=0;i<playerlist.length;i++){
+            data = data + '<tr>';
+            data=data+'<td>'+playerlist[i].name+'</td>'+'<td>'+playerlist[i].team+'</td>'+'<td>'+playerlist[i].season+'</td>'+'<td>'+playerlist[i].runs+'</td>'+'<td>'+playerlist[i].wickets+'</td>';    
+            data = data+'</tr>';
+            }
+        document.getElementById('result').innerHTML=data; 
+        }
+        
+        function dashboard()
+        {
+            var data = '';   
+            data = data + '<tr>';
+            data=data+'<th>'+"capholder"+'</th>'+'<th>'+"name"+'</th>'+'<th>'+"team"+'</th>'+'<th>'+"Season"+'</th>'+'<th>'+"Runs"+'</th>'+'<th>'+"wickets"+'</th>';
+            data = data + '<tr>';
+            data=data+'<td>'+"orange capholder"+'</td>'+'<td>'+""+'</td>'+'<td>'+""+'</td>'+'<td>'+""+'</td>'+'<td>'+""+'</td>'+'<td>'+""+'</td>';
+            data = data + '<tr>';
+            data=data+'<td>'+"purple capholder"+'</td>'+'<td>'+""+'</td>'+'<td>'+""+'</td>'+'<td>'+""+'</td>'+'<td>'+""+'</td>'+'<td>'+""+'</td>';
+            data = data+'</tr>';
+    
+    document.getElementById('re').innerHTML=data;
+}
+           
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
