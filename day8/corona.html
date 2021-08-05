@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>corona</title>
+</head>
+
+<body ng-app="coronaapp" ng-controller="coronacontroller">
+    <h1>corona dashboard</h1>
+    <label for="name"> statename</label>
+    <input type="text" id="sname" name="name" ng-model="name" placeholder="enter state name"><br><br>
+    <label>total</label>
+    <input type="number" id="total" name="total" ng-model="total" placeholder="total count"><br><br>
+    <label>active</label>
+    <input type="number" id="active" name="activecases" ng-model="active" placeholder="active cases"><br><br>
+    <label>rocovered</label>
+    <input type="number" id="recovered" name="recovered" ng-model="recovered" placeholder="recovered cases"><br><br>
+    <label>dead</label>
+    <input type="number" id="dead" name="totaldead" ng-model=dead placeholder="total dead"><br><br>
+    <button ng-click="list()">submit</button>
+    
+<table id='res'></table>
+
+    <script>
+        var app = angular.module("coronaapp", []);
+        app.controller("coronacontroller", function ($scope) {
+            
+            list=[];
+            $scope.list=function(){
+                clist=[];
+                clist.name= sname.value;
+                clist.total=total.value;
+                clist.active=active.value;
+                clist.recovered=recovered.value;
+                clist.dead=dead.value;
+                list.push(clist);
+                resultlist();
+            }
+
+function resultlist(){
+    var data='';
+    data="<tr><th>state name</th><th>total</th><th>active</th><th>recovered</th><th>dead</th></tr>";
+    for(var i=0;i< list.length;i++){
+        data=data+'<tr>'
+        data=data+'<td>'+list[i].name+'</td>'+'<td>'+list[i].total+'</td>'+'<td>'+list[i].active+'</td>'+'<td>'+list[i].recovered+'</td>'+'<td>'+list[i].dead+'</td>';
+        data=data+'</tr>';
+    }
+    document.getElementById('res').innerHTML=data;
+}
+        });
+        </script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>bill</title>
+</head>
+<body ng-app="ecomapp" ng-controller="ecomController">
+ 
+    <h1>E commerce</h1>
+ 
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="number">Mobile Number:</label>
+        <div class="col-sm-10">
+        <input type="text" name="number" id="number" ng-model="number" placeholder="Enter Mobile Number"><br><br>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="number">Purchase Amount:</label>
+        <div class="col-sm-10">
+            <input type="number" name="amount" id="amount" ng-model="amount" placeholder="Purchase Amount"><br><br>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="number">Do you have Card:</label>
+        <div class="col-sm-10">
+            <input type="text" name="card" id="card" ng-model="card" placeholder="Do you have Card"><br><br>
+        </div>
+    </div>
+ 
+    Purchase Amount<h3>{{amount}}</h3><br>
+    Discount Amount<h3 ng-bind="result()"></h3><br>
+    Balance Amount<h3 ng-bind="balanceAmount()"></h3><br>
+    <script>
+ 
+        var app = angular.module("ecomapp", []);
+        app.controller("ecomController", function ($scope) {
+ 
+            $scope.result = function () {
+                amount = $scope.amount;
+                discountAmount = 0;
+                balanceAmount = 0;
+ 
+                if ($scope.card) {
+                    addtionaldiscount = 5;
+                } else {
+                    addtionaldiscount = 0;
+                }
+                if (amount > 30000) {
+                    defaultdiscount = 35;
+                    if ($scope.card) {
+                        percentage = defaultdiscount + addtionaldiscount
+                    }
+                    else
+                        percentage = defaultdiscount
+                    discountAmount = amount * percentage / 100;
+                }
+                else if (amount > 20000 && amount <= 30000) {
+                    defaultdiscount = 30;
+                    if ($scope.card) {
+                        percentage = defaultdiscount + addtionaldiscount
+                    }
+                    else
+                        percentage = defaultdiscount
+                    discountAmount = amount * percentage / 100;
+                }
+                else if (amount > 10000 && amount <= 20000) {
+                    defaultdiscount = 20;
+                    if ($scope.card) {
+                        percentage = defaultdiscount + addtionaldiscount
+                    }
+                    else
+                        percentage = defaultdiscount
+                    discountAmount = amount * percentage / 100;
+                } else if (amount <= 10000) {
+                    defaultdiscount = 10;
+                    if ($scope.card) {
+                        percentage = defaultdiscount + addtionaldiscount
+                    }
+                    else
+                        percentage = defaultdiscount
+                    discountAmount = amount * percentage / 100;
+                }
+                else {
+                    discountAmount = 0;
+                }
+ 
+                return discountAmount;
+ 
+            };
+            $scope.balanceAmount = function () {
+ 
+                balanceAmount = 0;
+                if (amount) {
+                    var bal = amount - discountAmount;
+                    balanceAmount = bal;
+                }
+                return balanceAmount;
+            }
+        });
+    </script>
+ 
+</body>
+ 
+</html>

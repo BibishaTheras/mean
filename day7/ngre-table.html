@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>ng-repeat</title>
+</head>
+<body ng-app="" ng-init="employees=[
+{name:'raghu',profession:'IT',country:'India'},
+{name:'Tilaka Ratne',profession:'Cricketer',country:'Srilanka'},
+{name:'Bose',profession:'Economist',country:'USA'}
+]">
+<table>
+    <tr>
+        <th>name</th>
+        <th>profession</th>
+        <th>country</th>
+    </tr>
+</tr>
+<tr ng-repeat="emp in employees">
+    <td>{{emp.name}}</td>
+    <td>{{emp.profession}}</td>
+    <td>{{emp.country}}</td>
+</tr>
+        
+    <!--<td ng-repeat="emp in employees">{{emp.name[i]}}-{{emp.profession[i]}}-{{emp.country[i]}}</td>
+    -->  
+    
+    </table>
+</ul>
+</body>
+</html>

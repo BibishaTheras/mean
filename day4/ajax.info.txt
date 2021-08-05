@@ -1,0 +1,10 @@
+mobile</label>
+<input type="number" id="mobile" name="mobile"><br>
+<label>pincode</label>
+<input type="text" id="pincode" name="pincode" min="6" max="6"><br>
+<label>adhaar no</label>
+<input type="text" id="adhaar no" name="ahaar no" min="10" max="10"><br>
+<label>atendee name</label>
+<input type="text" id="atendee name" name="name"><br>
+<label for="datetime">date and time of request</label>
+<input type="datetime-local" id="datetime" name="da

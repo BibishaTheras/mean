@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="demo"></h1>
+   
+    <script>
+        function calculatebill(units)
+
+        {
+            amount=0;
+            if(units<=100)
+            {
+                amount= 1*units;
+            }
+            else if(units<=200)
+            {
+                amount=((1*100)+(2*(units-100)));
+                
+            }
+            else if(units<=300){
+                amount= ((1*100)+(2*100)+(3*(units-200)));
+                
+            }
+            else if(units>300)
+            {
+                amount=((1*100)+(2*100)+(3*100)+(5*(units-300)));
+                
+
+            }
+            return amount;
+            
+        }
+        document.getElementById("demo").innerHTML=calculatebill(150);
+
+    
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <pre id="default-spacing">{{ {'name':'value'} | json }}</pre>
+  <pre id="custom-spacing">{{ {'name':'value'} | json:4 }}</pre>
+  <pre id="custom-spacing1">{{ [{'name':'raghu','city':'Bengaluru'}] | json }}</pre>
+  <pre id="custom-spacing2">{{ ['Apple','Banana','Guava'] | json }}</pre>
+   
+  </body>
+  </html>
