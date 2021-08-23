@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<table class="table table-striped">
+<thead>
+  <tr>
+    <td>Name</td>
+    <td>Mobile</td>
+    <td>Age</td>
+    <td>Gender</td>
+    <td>Location</td>
+    <td>Aadhar</td>
+    <td>Enrollment Date and Time</td>
+  </tr>
+</thead>
+  <tbody>
+  <tr ng-repeat="patient in patientList">
+    <td>{{patient.name}}</td>
+    <td>{{patient.ph}}</td>
+    <td>{{patient.age}}</td>
+    <td>{{patient.sex}}</td>
+    <td>{{patient.loc}}</td>
+    <td>{{patient.adhaar}}</td>
+  <td>{{patient.time | date:'dd-MM-yyyy HH:mm'}} </td>
+
+  </tr>
+</tbody>
+</table>
+</body>
+</html>

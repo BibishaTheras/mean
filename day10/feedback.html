@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+      textarea{
+          resize: none;
+      }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <form class="form-default">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" autofocus>
+                <label for="pn">mobile number</label>
+          <input type="text" class="form-control" id="pn" name="phoneno">
+          <label>Rate us</label><br>
+          <input type="radio" name="rate" value="r"> 1 <br>
+          <input type="radio" name="rate" value="u"> 2 <br>
+          <input type="radio" name="rate" value="k"> 3 <br>
+          <input type="radio" name="rate" value="l"> 4 <br>
+          <input type="radio" name="rate" value="c"> 5 <br><br>
+           <textarea id="com" rows="4" cols="100" name="com" placeholder="comments....."></textarea><br>
+        <button type="submit">submit</button>
+</div>
+</form>
+</div>
+<script>
+    list=[];
+            $scope.list=function(){
+                clist=[];
+                clist.name= pname.value;
+                clist.age=Age.value;
+                clist.mobile=ph.value;
+                clist.adhaar=adhaar.value;
+                clist.gender=gender.value;
+                clist.location=Location.value;
+                clist.datetime=datetime.value;
+                list.push(clist);
+                resultlist();
+            }
+            function resultlist(){
+    var data='';
+    data="<tr><th>name</th><th>Age</th><th>mobile</th><th>Adhaar</th><th>Gender</th><th>Location</th></tr>";
+    for(var i=0;i< list.length;i++){
+        data=data+'<tr>'
+        data=data+'<td>'+list[i].name+'</td>'+'<td>'+list[i].age+'</td>'+'<td>'+list[i].mobile+'</td>'+'<td>'+list[i].adhaar+'</td>'+'<td>'+list[i].gender+'</td>'+'<td>'+list[i].location+'</td>';
+        data=data+'</tr>';
+    }
+    document.getElementById('res').innerHTML=data;
+}
+</script>
+template:"<h1>existingpatients-{{msg}}</h1>",
+        controller : "epCtrl"
+});
+ 
+
+});
+
+app.controller("epCtrl", function ($scope) {
+    $scope.msg = `<div id="existingpatients">
+      $scope.save=function(){
+  list=[];
+            $scope.list=function(){
+                clist=[];
+                clist.name= pname.value;
+                clist.age=Age.value;
+                clist.mobile=ph.value;
+                clist.adhaar=adhaar.value;
+                clist.gender=gender.value;
+                clist.location=Location.value;
+                clist.datetime=datetime.value;
+                list.push(clist);
+                resultlist();
+            }
+
+}
+    
+    
+            function resultlist(){
+    var data='';
+    data="<tr><th>name</th><th>Age</th><th>mobile</th><th>Adhaar</th><th>Gender</th><th>Location</th></tr>";
+    for(var i=0;i< list.length;i++){
+        data=data+'<tr>'
+        data=data+'<td>'+list[i].name+'</td>'+'<td>'+list[i].age+'</td>'+'<td>'+list[i].mobile+'</td>'+'<td>'+list[i].adhaar+'</td>'+'<td>'+list[i].gender+'</td>'+'<td>'+list[i].location+'</td>';
+        data=data+'</tr>';
+    }
+    document.getElementById('res').innerHTML=data;
+}</div>`;
+
+
+
+});
+</script>
+</body>
+</html>             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+

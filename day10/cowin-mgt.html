@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+  #ep{
+    width: 30%;
+    margin-left:25%;
+  }
+  form{
+    width: 550px;
+    height: 450px;
+    margin: auto;
+    position: relative;
+  }
+  #locate{
+    margin-left: 25%;
+    margin-top: 10%;
+  }
+     table,th,td{
+       position: relative;
+         width: 50%;
+            border-style: solid;
+            border-collapse: collapse;
+            text-align: center;
+            margin-top: 10%;
+             margin-left: 25%;
+            }
+        
+</style>
+<body ng-app='myApp'>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                </div>
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#!sign"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#!faci"> facilities</a></li>
+                  </ul>  
+                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#!feedback"> feedback</a></li>
+                    <li><a href="#!existingpatients"> Existing patients</a></li>
+                    <li><a href="#!locate"> Locate us</a></li>
+                  </ul>  
+                    
+ </div>
+ </nav>
+ <h1 style="text-align: center;">COWIN CARE MANAGEMENT SYSTEM</h1>
+                <h4 style="text-align: center;">welcome to cowid care management systems</h4>
+
+                <div ng-view></div>
+                <table id="res"></table>
+<script>
+    var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/sign", {
+        
+        template:`<div id="sign">
+        
+        <div class="container">
+   
+    <form ng-submit="signupPatient(patient)" class="form-default">
+    
+       
+        <div class="form-group">
+            
+            <label >Name</label>
+            
+            <input type="text" class="form-control" ng-model="patient.name" autofocus>
+         
+          <label >Age</label>
+         
+          
+          <input type="text" class="form-control" ng-model="patient.age">
+          
+          <label for="pn">mobile number</label>
+          
+          <input type="text" class="form-control" ng-model="patient.ph">
+          
+          <label for="adhaar">Adhaar no</label>
+          
+          <input type="number" class="form-control" ng-model="patient.adhaar"><br>
+          
+          <label>gender : </label>
+         
+         Male: <input type="radio"name="gender" ng-model="patient.sex" value="m">
+         
+         feMale: <input type="radio"  name="gender"  ng-model="patient.sex" value="f">
+         
+         other: <input type="radio"  name="gender"  ng-model="patient.sex" value="ot"><br><br>
+
+        <label>Location</label>
+
+        <input type="text" ng-model="patient.loc" class="form-control"><br>
+        
+        <label >date and time </label>
+        
+        <input type="datetime-local" class="form-control" ng-model="patient.time" ><br><br>
+  </div>
+  <input type="submit" value="submit" class="btn btn-success btn-sm" />   
+          </form>
+          </div>
+          </div>`,
+          controller : "signupCtrl"
+    })
+    .when("/faci", {
+    template:`<div id="faci">
+<table class="tab">
+<tr>
+  <th>Bed type</th>
+  <th>Total</th>
+  <th>Available</th>
+  <th>cost</th>
+
+</tr>
+<tr>
+  <td>oxygenated</td>
+  <td>100</td>
+  <td>34</td>
+  <td>5000</td>
+</tr>
+<tr>
+  <td>normal</td>
+  <td>200</td>
+  <td>89</td>
+  <td>2000</td>
+</tr>
+
+
+</table>
+</div>`
+})
+.when("/feedback",{
+template:`<div id="feedback"
+<div class="container">
+  <form ng-submit="feedbPatient(patient)" class="form-default">
+      <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" ng-model="patient.name" autofocus>
+          <label>mobile number</label>
+    <input type="text" class="form-control" ng-model="patient.num">
+    <label>Rate us</label><br>
+    <input type="radio" name="rate" ng-model="patient.rate" value="r"> 1 <br>
+    <input type="radio" name="rate" ng-model="patient.rate" value="u"> 2 <br>
+    <input type="radio" name="rate" ng-model="patient.rate" value="k"> 3 <br>
+    <input type="radio" name="rate" ng-model="patient.rate" value="l"> 4 <br>
+    <input type="radio" name="rate" ng-model="patient.rate" value="c"> 5 <br><br>
+     <textarea id="com" rows="4" cols="75" ng-model="patient.comments" name="com" placeholder="comments....."></textarea><br>
+     <input type="submit" value="submit" class="btn btn-success btn-sm" />  
+</div>
+</form>
+</div>
+</div>`,
+controller:"feedbcntr"
+})
+.when("/locate",{
+    template:`<div id="locate">
+    <p>ADDRESS  :   NO. 15 SHAFEE MOHAMMED ROAD THOUSAND LIGHTS CHENNAI, Chennai, Tamil Nadu, 600006..</p>
+    <p>CONTACT NUMBER   :  8098798979</p>
+    </div>`
+})
+.when("/existingpatients",{
+    template:`<h3 style=" text-align: center;">list of patients</h3>
+    <div id="ep">
+    <table class="table table-striped">
+<thead>
+  <tr>
+    <td>Name</td>
+    <td>Mobile</td>
+    <td>Age</td>
+    <td>Gender</td>
+    <td>Location</td>
+    <td>Aadhar</td>
+    <td>Enrollment Date and Time</td>
+  </tr>
+</thead>
+  <tbody>
+  <tr ng-repeat="patient in epList">
+    <td>{{patient.name}}</td>
+    <td>{{patient.ph}}</td>
+    <td>{{patient.age}}</td>
+    <td>{{patient.sex}}</td>
+    <td>{{patient.loc}}</td>
+    <td>{{patient.adhaar}}</td>
+  <td>{{patient.time | date:'dd-MM-yyyy HH:mm'}} </td>
+
+  </tr>
+</tbody>
+</table></div>`,
+      controller :  "existinPatients"
+        
+});
+ });
+ app.controller("signupCtrl", function ($scope,$http) {
+    $scope.patientList=[];
+    console.log('signup controller');
+
+    $scope.signupPatient=function(patient)
+    {
+      console.log('patient ',patient);
+      var patientdata = JSON.stringify(patient);
+      console.log('patient data after copy ',patientdata);
+ //$http POST function
+    $http({
+
+method: 'POST',
+url: 'http://localhost:3000/patients',
+data: patientdata
+
+}).then(function successCallback(response) {
+  console.log('success::');
+  //var responsedata = JSON.parse(response);
+  console.log('response data in js object ',response.data);
+  $scope.patientList.push(response.data);
+  console.log('patient list',$scope.patientList);
+//$scope.users.push(response.data);
+alert("Patient created Successfully ::",response);
+
+}, function errorCallback(response) {
+
+alert("Error. while created user Try Again!");
+
+});
+
+    }
+    //$scope.msg = "I love London";
+  });
+  app.controller("existinPatients", function($scope, $http) {
+  $scope.epList = [];
+  console.log("existinPatients controller");
+
+  getExistingPatientsList();
+
+  function getExistingPatientsList() {
+    $http({
+      method: "GET",
+      url: `http://localhost:3000/patients`
+    }).then(
+      function successCallback(response) {
+        $scope.epList = response.data;
+        console.log("existinPatients", $scope.epList);
+      },
+      function errorCallback(response) {
+        alert("Error. Try Again!");
+      }
+    );
+  }
+  });
+  app.controller("feedbcntr", function ($scope,$http) {
+    $scope.feedbList=[];
+    console.log('feedback controller');
+
+    $scope.feedbPatient=function(patient)
+    {
+      console.log('patient ',patient);
+      var patientdata = JSON.stringify(patient);
+      console.log('patient data after copy ',patientdata);
+ //$http POST function
+    $http({
+
+method: 'POST',
+url: 'http://localhost:3000/feedback',
+data: patientdata
+
+}).then(function successCallback(response) {
+  console.log('success::');
+  //var responsedata = JSON.parse(response);
+  console.log('response data in js object ',response.data);
+  $scope.feedbList.push(response.data);
+  console.log('patient list',$scope.feedbList);
+//$scope.users.push(response.data);
+alert("feedback created Successfully ::",response);
+
+}, function errorCallback(response) {
+
+alert("Error. while created user Try Again!");
+
+});
+
+    }
+    
+  });
+ 
+</script>
+
+</body>
+</html>             
