@@ -1,0 +1,26 @@
+.players {
+    border-collapse: collapse;
+  }
+  
+  .players th {
+    border-bottom: 1px solid;
+  }
+  .players td, .players th {
+    border-left: 1px solid;
+    
+    padding: 5px 10px;
+  }
+  .players td:first-child, .players th:first-child {
+    border-left: none;
+  }
+  .players table,td,th{
+      border-style: solid;
+      border-collapse: collapse;
+  }
+  
+  .sortorder:after {
+    content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+  }
+  .sortorder.reverse:after {
+    content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+  }

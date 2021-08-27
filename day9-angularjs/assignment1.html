@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-orderBy-dynamic-production</title>
+  <link href="assignstyle.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  
+  <script src="assignment.js"></script>
+  </head>
+  <body ng-app="orderByExample2">
+    <div ng-controller="ExampleController">
+    <pre>Sort by = {{propertyName}}; reverse = {{reverse}}</pre>
+    <hr/>
+    <button ng-click="propertyName = null; reverse = false">Set to unsorted</button>
+    <hr/>
+    <table class="players">
+        <tr>
+          <th>
+            player name
+          </th>
+          <th>team</th>
+          <th>season</th>
+          <th>
+            <button ng-click="sortBy('runs')">total runs</button>
+            <span class="sortorder" ng-show="propertyName === 'runs'" ng-class="{reverse: reverse}"></span>
+          </th>
+          <th>
+            <button ng-click="sortBy('wickets')">wickets taken</button>
+            <span class="sortorder" ng-show="propertyName === 'wickets'" ng-class="{reverse: reverse}"></span>
+          </th>
+        </tr>
+        <tr ng-repeat="player in players | orderBy:propertyName:reverse">
+          <td>{{player.name}}</td>
+          <td>{{player.team}}</td>
+          <td>{{player.season}}</td>
+          <td>{{player.runs}}</td>
+          <td>{{player.wickets}}</td>
+        </tr>
+      </table>
+    </div>
+    </body>
+    </html>
